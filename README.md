@@ -1,11 +1,11 @@
 # 项目简介 Introduction
-关于 谦行Aling (qx2io) 制作的《深度学习》系列视频的学习笔记以及复现代码  
-Notes and scripts taken while studying <Deep Learning> produced by qx2io  
+关于 谦行Aling 制作的《深度学习》系列视频的学习笔记以及复现代码  
+Notes and scripts taken while studying <Deep Learning> produced by 谦行Aling  
 
 > - 内容链接 Source:  
 >   https://space.bilibili.com/291215958/lists/7984530  
 > - 内容作者 Author:  
->   [谦行Aling](https://github.com/qx2io)  
+>   [谦行Aling](https://space.bilibili.com/291215958)  
 > - 发布时间 Release:   
 >   2026.05 - 至今 so far
 
@@ -33,52 +33,31 @@ Notes and scripts taken while studying <Deep Learning> produced by qx2io
   20. [Embedding 与 word2vec: 模型如何理解一个词](https://www.bilibili.com/video/BV16cNP6oE4R)
   21. [RNN: 模型开始理解自然语言序列](https://www.bilibili.com/video/BV1FbNT6NEJL)
   22. [LSTM 与 CRU 改进 RNN 带来长期记忆](https://www.bilibili.com/video/BV1ecKP6SELq)
-  23. [To be continued](https://space.bilibili.com/291215958/lists/7984530)
+  23. [编码器-解码器 与 seq2seq](https://www.bilibili.com/video/BV1Gk3G6pESk)
+  24. [To be continued](https://space.bilibili.com/291215958/lists/7984530)
 
-- [文档目录 Documents](https://www.yuque.com/qx2io/deep-learning)
-1. 学前准备  
-   - [机器学习基础概念](https://www.yuque.com/qx2io/deep-learning/fsgxirwst6c76i39)
-   - [数学知识](https://www.yuque.com/qx2io/deep-learning/vhcidn1k06s6rcrw)
-   - [编程基础](https://www.yuque.com/qx2io/deep-learning/ggerhdvcncc3gufp)
-2. 深度学习基础  
-   - [深度学习是什么](https://www.yuque.com/qx2io/deep-learning/zxukyal35d8171yo)
-   - [安装深度学习环境](https://www.yuque.com/qx2io/deep-learning/yt2z7huct0uf6s50)
-   - [感知机: 深度学习的 Hello World](https://www.yuque.com/qx2io/deep-learning/kuqdhoh4p4wgirey)
-   - [从 MLP 到神经网络](https://www.yuque.com/qx2io/deep-learning/dhc5a6nvm8ik0fy7)
-   - [反向传播: 神经网络是如何从错误中学习的](https://www.yuque.com/qx2io/deep-learning/bgzk7y4b52esmtzd)
-   - [激活函数: 如何让神经网络有灵魂](https://www.yuque.com/qx2io/deep-learning/paz5k3gmzho81sg0)
-   - [梯度下降与优化器](https://www.yuque.com/qx2io/deep-learning/vncdexfe2p50mr5x)
-   - [损失函数: 告诉模型错了多少](https://www.yuque.com/qx2io/deep-learning/izmz005xxgzuxpfr)
-   - [最简单的神经网络——实现手写数字识别](https://www.yuque.com/qx2io/deep-learning/uepysdrfmwdx4u6a)
-   - [学习率调度](https://www.yuque.com/qx2io/deep-learning/kvhcqwe3uefdy32s)
-   - [参数初始化](https://www.yuque.com/qx2io/deep-learning/fc4gccgfbxubqpp5)
-   - [归一化](https://www.yuque.com/qx2io/deep-learning/cetvzcqi3id3mcn6)
-   - [正则化](https://www.yuque.com/qx2io/deep-learning/saimafu1l74neqcy)
-   - [模型训练的完整配方](https://www.yuque.com/qx2io/deep-learning/gsu8kt3u2ro3c806)
-3. CNN  
-   - [从像素到卷积: 为什么视觉任务需要 CNN](https://www.yuque.com/qx2io/deep-learning/axnhh8t2smg6smmy)
-   - [CNN 如何看懂一张图像](https://www.yuque.com/qx2io/deep-learning/xpg5flw5lo9340sy)
-   - [残差连接](https://www.yuque.com/qx2io/deep-learning/lm1gdchxxkob1gs9)
-4. NLP  
-   - [NLP 概述](https://www.yuque.com/qx2io/deep-learning/vukiytagkmkakpvh)
-   - [Embedding 与 word2vec: 计算机如何理解一个词](https://www.yuque.com/qx2io/deep-learning/rd1f3b4q56ydbrgw)
-   - [RNN: 从理解单词到读懂语句](https://www.yuque.com/qx2io/deep-learning/rle472mbq88hi13u)
-   - [RNN 改进: LSTM 与 GRU](https://www.yuque.com/qx2io/deep-learning/fgbrbi5o7uc0noax)
-   - [Encoder-Decoder 与 Seq2seq 架构](https://www.yuque.com/qx2io/deep-learning/fxlno92ugvqtge9v)
-   - [To be continued](https://www.yuque.com/qx2io/deep-learning)
+- 笔记目录 Note Contents
+	> 后续补充  
+	> to be continued
 
 - 仓库结构 Repository
-  ```
-  ROOT
-    ├─ docs       # 按章节的学习笔记
-    └─ materials  # 笔记内的图片素材
-    # To be continued
-  ```
+	```
+	ROOT
+	├─ docs       # 按章节的学习笔记
+	├─ materials  # 笔记内的图片素材
+	└─ script     # 按章节复现的脚本
+	# To be continued
+	```
 
 # 环境配置 Environment Setup
-> 后续补充  
->To be continued...
+> 由于视频和笔记中分别介绍了 `miniconda` 和 `uv` 两种工具  
+> 因此计划在学习以及体验应用后补充  
+> To be continued...
 
 # 轻量指南 Simple Guide
+- 原作完整资料  
+	尊重智力劳动以及知识权益  
+	获取方式详见 [原作B站简介](https://space.bilibili.com/291215958)  
+	目前绿色气泡联系 `undefined_str`
 - 原作其他博客  
-  https://juejin.cn/user/237150240001639/posts
+	https://juejin.cn/user/237150240001639/posts
