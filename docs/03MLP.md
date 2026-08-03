@@ -13,108 +13,28 @@
 
 XOR 问题早在逻辑电路得到解决，计算机的异或门是由更基础的门电路组合而成的
 
-```mermaid
-graph LR
-	%% 定义节点及形状
-	x1((x1))
-	x2((x2))
-	or[OR]
-	nand[NAND]
-	and[AND]
-	out["Y = x1 ⊕ x2<br>(XOR)"]
-
-	%% 第一步：输入层
-	subgraph Step1["第一步：输入层"]
-		direction LR
-		x1
-		x2
-	end
-	
-	%% 第二步：隐藏层
-	subgraph Step2["第二步：隐藏层"]
-		direction TB
-		or
-		nand
-	end
-	
-	%% 第三步：输出层
-	subgraph Step3["第三步：输出层"]
-		direction TB
-		and
-		out
-	end
-
-	%% 定义连接线
-	x1 -->  or
-	x1 --> nand
-	x2 --> or
-	x2 --> nand
-	or --> and
-	nand --> and
-	and --> out
-
-	%% 样式设置（背景色和虚线边框）
-	style Step1 fill:#f4f9fd,stroke:#85c1e9,stroke-dasharray: 5 5,color:#1a5276
-	style Step2 fill:#f4fbf5,stroke:#82e0aa,stroke-dasharray: 5 5,color:#145a32
-	style Step3 fill:#fdf6f0,stroke:#f5b041,stroke-dasharray: 5 5,color:#935e38
-	
-	classDef default fill:#fff,stroke:#333,stroke-width:2px;
-```
+![](../materials/img0301XORcircuit.png)
 
 - $\text{OR} \to x_1 \ \text{OR} \ x_2$ : 至少一个输入为 1
 - $\text{NAND not and} \to \text{NOT}(x_1 \ \text{AND} \ x_2)$ : 两个输入不同时为 1
+
+对第二步中的两个逻辑结果取且 ($\text{AND}$) ,  
+仅当一个输入为 1 并且另一输入为 0 时，  
+最终输出会为 1，这就是异或的定义
+
+## 多线合围复杂区域
+将上述组合堆叠的思路代入感知机应用  
+单个感知机在特征空间里仅构造单条直线，或在高维空间的超平面，只能线性分割  
+如果增加感知机的数量，那么可以合围任意复杂的区域  
+
+![](../materials/img0302XORsolution.png)
 
 ## 两层感知机解决XOR
 
 > [!TIP]  
 > 两层感知机通过组合简单的线性分隔（OR 和 NAND），在最后一层实现异或（XOR）
 
-
-```mermaid
-graph LR
-	%% 定义节点样式
-	classDef inputNode fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
-	classDef hiddenNode fill:#d5e8d4,stroke:#82b366,stroke-width:2px;
-	classDef outputNode fill:#ffe6cc,stroke:#d79b00,stroke-width:2px;
-	classDef textNode fill:none,stroke:none;
-	classDef tableNode fill:#fff,stroke:#d79b00,stroke-width:1px;
-
-	subgraph Layer1 ["第 1 层：输入层"]
-		direction TB
-		x1((x<sub>1</sub>)):::inputNode
-		x2((x<sub>2</sub>)):::inputNode
-		InputLabel["输入： (x<sub>1</sub>, x<sub>2</sub>) ∈ {0, 1}<sup>2</sup>"]:::textNode
-	end
-
-	subgraph Layer2 ["第 2 层：隐藏层"]
-		direction TB
-		HiddenLabel["2 个神经元"]:::textNode
-		h1((h<sub>1</sub>)):::hiddenNode
-		h2((h<sub>2</sub>)):::hiddenNode
-		HiddenCondition["h<sub>1</sub> = step( x<sub>1</sub> + x<sub>2</sub> - 0.5)<br>h<sub>2</sub> = step(-x<sub>1</sub> - x<sub>2</sub> + 1.5)<br>h<sub>1</sub> = 1 当且仅当 (x<sub>1</sub>, x<sub>2</sub>) ≠ (0,0)<br>h<sub>2</sub> = 1 当且仅当 (x<sub>1</sub>, x<sub>2</sub>) ≠ (1,1)"]:::textNode
-	end
-
-	subgraph Layer3 ["第 3 层：输出层"]
-		direction TB
-		OutputLabel["1 个神经元"]:::textNode
-		y((<b>y</b>)):::outputNode
-	end
-
-	%% 连接线（包含权重）
-	x1 --> |w<sub>11</sub> =1| h1
-	x2 --> |w<sub>21</sub> =1| h1
-	x1 --> |w<sub>12</sub> =-1| h2
-	x2 --> |w<sub>22</sub> =-1| h2
-	h1 --> |v<sub>1</sub> =1| y
-	h2 --> |v<sub>2</sub> =1| y
-
-%% 设置虚线区域样式
-style Layer1 fill:#f4f9fd,stroke:#8cb9e8,stroke-width:2px,stroke-dasharray: 5 5,color:#1a5276
-style Layer2 fill:#f4fbf5,stroke:#82e0aa,stroke-width:2px,stroke-dasharray: 5 5,color:#145a32
-style Layer3 fill:#fdf6f0,stroke:#f5b041,stroke-width:2px,stroke-dasharray: 5 5,color:#935e38
-
-%% 为了保证同层文本节点能排布在圆点周围，可以改变连接方向的顺序，或者利用 Mermaid 的布局自然浮动
-```
+![](../materials/img0303XORpreceptron.png)
 
 - 输入层  
 	接收两个特征 $x_1 \ , \ x_2$
@@ -123,13 +43,6 @@ style Layer3 fill:#fdf6f0,stroke:#f5b041,stroke-width:2px,stroke-dasharray: 5 5,
 - 输出层  
 	将隐藏层的两个输出作为输入，再一次加权求和后激活，得到异或判断
 
-| $x_1$ | $x_2$ | y(XOR) |
-|:-----:|:-----:|:------:|
-|0|0|0|
-|0|1|1|
-|1|0|1|
-|1|1|0|
-
 第一个隐藏层学会 **至少一个输出为 1**  
 第二个隐藏层学会 **输出不能同时为 1**  
 输出层对两个条件取交集  
@@ -137,15 +50,32 @@ style Layer3 fill:#fdf6f0,stroke:#f5b041,stroke-width:2px,stroke-dasharray: 5 5,
 # 多层感知机的原理与结构
 
 ## 多层结构的思想来源
-1. 神经科学  
-	大脑皮层是分层处理的  
-	底层神经元响应边缘和方向，高层神经元响应人脸和物体  
-2. 函数逼近理论  
-	任何函数都可以用简单函数的组合来逼近  
-	泰勒展开、傅里叶变换等  
+
+### 神经科学  
+1940 年，神经科学家发现大脑皮层是分层处理的
+
+![](../materials/img0304IdeaNeurology.png)
+
+视觉信号从视网膜出发，经过 V1, V2, V4, IT 等多个区域逐级加工  
+底层神经元响应边缘和方向，高层神经元响应人脸和物体  
+
+1943 年的 M-P 神经元模型的设计目标就是通过数学描述大脑的工作方式  
+
+### 函数逼近理论  
+任何函数都可以用简单函数的组合来逼近  
+- 泰勒展开通过多项式实现逼近
+- 傅里叶变换通过正弦波的叠加实现逼近
+
+![](../materials/img0305IdeaMathematic.png)
+
+代入神经网络：  
+一个神经元是简单的函数单元，多个神经元的组合可以逼近更复杂的函数，多层组合可以逼近任意复杂的函数
 
 ## 多层感知机的一般结构
-多个感知机按层排列，层间全连接，构成了 **多层感知机 (MLP)**
+将多个感知机按层排列，在层间全连接，构成 **多层感知机 (MLP)** 即为最基础的神经网络
+
+![](../materials/img0306MLPstructure.png)
+
 - 输入层接收原始特征，数个隐藏层进行中间预算，输出层给出最终结果
 - 同一层的神经元 **并行提取多个不同的特征或规则**
 - 后续层将前一层的输出作为输入，利用不同权重进一步组合，**逐层构造更加抽象、更加有效的表达**
@@ -175,6 +105,8 @@ $$ h = f(Wx + b)$$
 
 **阶跃函数 (Step Function)**
 
+![](../materials/img0307StepFunction.png)
+
 $$
 step(z) = 
 \begin{cases}
@@ -186,7 +118,6 @@ $$
 ## 万能逼近定理
 1989 年正式证明了 **万能逼近定理 (Universal Approximation Theorem)**
 
-> [!Note]万能逼近定理  
 > 一个含有充足神经元的单隐藏层 MLP, 可以任意精度逼近任意连续函数
 
 - 意味 MLP 在理论上具备表达任何函数的能力  
